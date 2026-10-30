@@ -14,8 +14,7 @@ export default defineGkdApp({
       rules: [
         {
           activityIds: 'com.sankuai.waimai.business.page.homepage.MainActivity',
-          matches:
-            '[id="com.sankuai.meituan.takeoutnew:id/wm_upgrade_force_cancel"]',
+          matches: '[vid="wm_upgrade_force_cancel"]',
           snapshotUrls: 'https://i.gkd.li/i/13415044',
         },
       ],
@@ -25,12 +24,21 @@ export default defineGkdApp({
       name: '全屏广告-弹窗广告',
       rules: [
         {
-          key: 1,
+          key: 0,
           activityIds:
             'com.sankuai.waimai.bussiness.order.detail.WMOrderDetailActivity',
           matches:
             '@ImageView[clickable=true] - FrameLayout > FrameLayout > FrameLayout TextView[text="点我领取"]',
           snapshotUrls: 'https://i.gkd.li/i/13175526',
+        },
+        {
+          key: 1,
+          fastQuery: true,
+          activityIds: 'com.sankuai.waimai.business.page.homepage.MainActivity',
+          matches:
+            'ImageView < @[clickable=true] - FrameLayout >5 [text="外卖神券"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/25865139',
+          exampleUrls: 'https://e.gkd.li/b82ac99a-4902-453f-a59d-a11bf55560aa',
         },
       ],
     },

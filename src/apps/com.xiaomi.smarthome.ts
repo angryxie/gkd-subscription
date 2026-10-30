@@ -9,7 +9,7 @@ export default defineGkdApp({
       name: '局部广告-卡片广告',
       rules: [
         {
-          activityIds: 'com.xiaomi.smarthome.SmartHomeMainActivity',
+          activityIds: '.SmartHomeMainActivity',
           matches:
             'RelativeLayout[childCount=2] > ImageView[id!=null] + ImageView[clickable=true][id!=null]',
           snapshotUrls: 'https://i.gkd.li/i/12639658',
@@ -27,6 +27,20 @@ export default defineGkdApp({
           matches:
             '[text*="检测到"&&text*="升级"] < ViewGroup + ViewGroup > Button > [text = "取消"]',
           snapshotUrls: 'https://i.gkd.li/i/12639671',
+        },
+      ],
+    },
+    {
+      key: 2,
+      name: '局部广告-顶部横幅',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.framework.plugin.rn.PluginRNActivity',
+          matches:
+            '@[desc="关闭"] <3 ViewGroup < [visibleToUser=true] <2 [childCount=2] < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/29299389',
         },
       ],
     },

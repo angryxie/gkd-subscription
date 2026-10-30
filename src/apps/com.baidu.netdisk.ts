@@ -13,9 +13,9 @@ export default defineGkdApp({
         {
           key: 3,
           activityIds: [
-            'com.baidu.netdisk.business.guide.dialog.lifeproduct.',
-            'com.baidu.netdisk.ui.MainActivity',
-            'com.baidu.netdisk.ui.Navigate',
+            '.business.guide.dialog.lifeproduct.',
+            '.ui.MainActivity',
+            '.ui.Navigate',
           ],
           matches: '[vid="iv_close"]',
           snapshotUrls: [
@@ -52,11 +52,17 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
-          activityIds: ['.ui.MainActivity', '.ui.cloudp2p.RichMediaActivity'],
-          matches: '[text="立即更新"] -2 [text="下次再说"]', //使用ID会导致误触（例如删除确认https://i.gkd.li/i/13069049）
+          activityIds: [
+            '.ui.MainActivity',
+            '.ui.cloudp2p.RichMediaActivity',
+            '.module.sharelink.ChainVerifyActivity',
+          ],
+          matches: '[text="立即更新"] -(1,2) [text="下次再说"]', //使用ID会导致误触（例如删除确认https://i.gkd.li/i/13069049）
           snapshotUrls: [
             'https://i.gkd.li/i/16118181',
             'https://i.gkd.li/i/24834209',
+            'https://i.gkd.li/i/26574534',
+            'https://i.gkd.li/i/33673328', // 该快照是[设置]界面,手动检查更新的弹窗, activityId 不作匹配
           ],
         },
       ],
@@ -72,8 +78,11 @@ export default defineGkdApp({
       rules: [
         {
           activityIds: '.ui.MainActivity',
-          matches: 'ImageView[id="com.baidu.netdisk:id/dialog_cancel"]', //单独使用ID会导致误触（例如删除确认https://i.gkd.li/i/13069049）
-          snapshotUrls: 'https://i.gkd.li/i/12923936',
+          matches: [
+            '[text="开启推送提醒"]',
+            '[text="暂不开启"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/25904597',
         },
       ],
     },
@@ -97,7 +106,7 @@ export default defineGkdApp({
       desc: '点击关闭',
       rules: [
         {
-          activityIds: 'com.baidu.netdisk.ui.MainActivity',
+          activityIds: '.ui.MainActivity',
           matches:
             '[vid="float_btn_close"][clickable=true][visibleToUser=true]',
           exampleUrls:
@@ -110,7 +119,10 @@ export default defineGkdApp({
       key: 13,
       name: '分段广告-暂不开启自动备份',
       fastQuery: true,
-      activityIds: '.ui.NewQuickSettingsActivity',
+      activityIds: [
+        '.ui.NewQuickSettingsActivity',
+        '.ui.RepeatedNewQuickSettingsActivity',
+      ],
       rules: [
         {
           key: 0,
@@ -119,13 +131,19 @@ export default defineGkdApp({
             '[text="暂不开启"][visibleToUser=true]',
           ],
           exampleUrls: 'https://e.gkd.li/e227fa57-f728-4ba4-8fff-493751bc5035',
-          snapshotUrls: 'https://i.gkd.li/i/22401064',
+          snapshotUrls: [
+            'https://i.gkd.li/i/22401064',
+            'https://i.gkd.li/i/25903980',
+          ],
         },
         {
           preKeys: [0],
-          matches: '[text="暂不开启"][visibleToUser=true]',
+          matches: '[text="立即开启"] - [text="暂不开启"][visibleToUser=true]',
           exampleUrls: 'https://e.gkd.li/aa9782d4-304f-401b-89f6-4fae703b8280',
-          snapshotUrls: 'https://i.gkd.li/i/22401070',
+          snapshotUrls: [
+            'https://i.gkd.li/i/22401070',
+            'https://i.gkd.li/i/25903983',
+          ],
         },
       ],
     },

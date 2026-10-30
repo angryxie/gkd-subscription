@@ -10,7 +10,7 @@ export default defineGkdApp({
       desc: '点击卡片右上角广告文字,出现广告反馈,点击屏蔽该广告',
       fastQuery: true,
       activityIds: [
-        'com.hupu.games.main.MainActivity',
+        '.main.MainActivity',
         'com.hupu.android.bbs.detail.PostDetailActivity',
         'com.hupu.topic.TopicActivity',
         'com.hupu.android.bbs.page.rating.ratingDetail.RatingDetailActivity',
@@ -37,6 +37,19 @@ export default defineGkdApp({
             'https://i.gkd.li/i/15360360',
             'https://i.gkd.li/i/17869227',
           ],
+        },
+      ],
+    },
+    {
+      key: 2,
+      name: '全屏广告',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.main.MainActivity',
+          matches: '[vid="iv_close"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/27383159',
         },
       ],
     },

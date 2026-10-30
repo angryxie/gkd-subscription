@@ -11,7 +11,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 3,
-          activityIds: 'com.sina.weibo.feed.MPDialogActivity',
+          activityIds: '.feed.MPDialogActivity',
           matches:
             'WebView[text="Wbox"] > View[childCount=1] >(1,2) View[childCount=2] > @TextView[clickable=true][visibleToUser=true][childCount=0][index=1][width<200] <<n [vid="container"]',
           snapshotUrls: [
@@ -22,9 +22,9 @@ export default defineGkdApp({
         },
         {
           key: 4,
-          activityIds: 'com.sina.weibo.feed.MPDialogActivity',
+          activityIds: '.feed.MPDialogActivity',
           matches:
-            '@Image[text="close"] < View[childCount=4] <2 * <<n [id="com.sina.weibo:id/container"]',
+            '@Image[text="close"] < View[childCount=4] <2 * <<n [vid="container"]',
           snapshotUrls: 'https://i.gkd.li/i/14033735',
         },
       ],
@@ -63,8 +63,7 @@ export default defineGkdApp({
         {
           key: 1,
           activityIds: '.MainTabActivity',
-          matches:
-            '@[id="com.sina.weibo:id/btn_close"] +2 [text="使用您的位置信息"]',
+          matches: '@[vid="btn_close"] +2 [text="使用您的位置信息"]',
           snapshotUrls: 'https://i.gkd.li/i/13255595',
         },
       ],
@@ -72,7 +71,7 @@ export default defineGkdApp({
     {
       key: 17,
       name: '分段广告-信息流广告',
-      desc: '点击关闭-点击[不感兴趣]/[不想看到此类内容]',
+      desc: '点击关闭-点击[不感兴趣/不想看到此类内容]',
       fastQuery: true,
       activityIds: [
         '.feed.DetailWeiboActivity',
@@ -83,18 +82,26 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          matches: '@[vid="ll_close"] > [text="广告"][visibleToUser=true]',
+          matches:
+            '@[vid="ll_close" || vid="closeButton"] > [text="广告"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/13852321',
             'https://i.gkd.li/i/19526000',
             'https://i.gkd.li/i/21828244',
             'https://i.gkd.li/i/24291704',
+            'https://i.gkd.li/i/19538265', // closeButton
           ],
+          exampleUrls: 'https://e.gkd.li/a3d4a9fb-43a0-46e0-a073-13d9691beb19',
         },
         {
           key: 1,
-          matches: '[vid="corner_marker_view"] >2 [vid="right_top_tag"]',
-          snapshotUrls: 'https://i.gkd.li/i/14210775',
+          matches:
+            'RelativeLayout >2 ImageView[vid="right_top_tag" || vid="iv_ad_x"][clickable=true][visibleToUser=true][width<200]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14210775',
+            'https://i.gkd.li/i/22275086',
+          ],
+          exampleUrls: 'https://e.gkd.li/f0d15b65-21f5-4398-9d24-da858ea34a8b',
         },
         {
           key: 3,
@@ -108,31 +115,20 @@ export default defineGkdApp({
           ],
         },
         {
-          key: 4,
-          matches: '@[vid="closeButton"] > [text="广告"][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/6952c2d1-65b5-4419-adb6-ba0f6349801e',
-          snapshotUrls: 'https://i.gkd.li/i/19538265',
-        },
-        {
-          key: 5,
-          matches: '[vid="iv_ad_x"][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/58baa39c-c447-4664-8a39-c058497b9495',
-          snapshotUrls: 'https://i.gkd.li/i/22275086',
-        },
-        {
           key: 6,
           matches:
-            'RelativeLayout >7 FrameLayout[childCount=4] > FrameLayout[childCount=1] > @[name$="FrameLayout" || name$="ImageView"][clickable=true][childCount<2][visibleToUser=true][width<50&&height<50] <<n [vid="view_recycler" || vid="tweet_list"]',
-          exampleUrls: 'https://e.gkd.li/fc3b2c98-4540-4ec1-94b2-24abf90212c9',
+            '@[name$="FrameLayout" || name$="ImageView"][clickable=true][childCount<2][width<50 && height<50] <<n [name$="Layout"] -(1,2) [visibleToUser=true] >(1,3) [vid="shareLayout_0"]',
           snapshotUrls: [
             'https://i.gkd.li/i/21166775',
             'https://i.gkd.li/i/21828269',
+            'https://i.gkd.li/i/31557775',
           ],
+          exampleUrls: 'https://e.gkd.li/83586a40-3c41-460a-acab-248517589fe5',
         },
 
         // 预留key
         {
-          preKeys: [0, 1, 3, 4, 5, 6],
+          preKeys: [0, 1, 3, 6],
           key: 90,
           matchRoot: true,
           anyMatches: [
@@ -173,7 +169,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: 'com.sina.weibo.photoalbum.imageviewer.ImageViewer',
+          activityIds: '.photoalbum.imageviewer.ImageViewer',
           matches: '@LinearLayout >3 [vid="tv_dialog_item"][text^="原图"]',
           snapshotUrls: 'https://i.gkd.li/i/13929119',
         },
@@ -187,7 +183,7 @@ export default defineGkdApp({
         {
           key: 0,
           name: '点击签到',
-          activityIds: 'com.sina.weibo.supergroup.SGPageActivity',
+          activityIds: '.supergroup.SGPageActivity',
           // excludeMatches: ['[text="关注"]', '[text="Follow"]'], 此写法会导致误触
           matches: [
             'ViewGroup[childCount=2] > [text="管理"][visibleToUser=true]',
@@ -202,14 +198,14 @@ export default defineGkdApp({
         {
           key: 1,
           name: '取消勾选[接收本超话签到提醒推送]',
-          activityIds: 'com.sina.weibo.supergroup.pagepop.PagePopActivity',
+          activityIds: '.supergroup.pagepop.PagePopActivity',
           matches: '@[checked=true] < * > [text="接收本超话签到提醒推送"]',
           snapshotUrls: 'https://i.gkd.li/i/15103524',
         },
         {
           key: 2,
           name: '关闭签到成功弹窗',
-          activityIds: 'com.sina.weibo.supergroup.pagepop.PagePopActivity',
+          activityIds: '.supergroup.pagepop.PagePopActivity',
           matches: ['[text^="连续签到"]', '[vid="iv_close_v2"]'],
           snapshotUrls: [
             'https://i.gkd.li/i/15103524',
@@ -226,8 +222,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds:
-            'com.sina.weibo.supergroup.generic.GenericChannelActivity',
+          activityIds: '.supergroup.generic.GenericChannelActivity',
           matches: [
             '[text*="一键签到"][visibleToUser=true]',
             '[vid="checkinBtn"][visibleToUser=true]',

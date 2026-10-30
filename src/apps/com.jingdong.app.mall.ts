@@ -39,7 +39,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: 'com.jingdong.app.mall.MainFrameActivity',
+          activityIds: '.MainFrameActivity',
           matches: '[id="com.jd.lib.cart.feature:id/iv_egg_close"]',
           snapshotUrls: 'https://i.gkd.li/i/14731003',
         },
@@ -48,7 +48,7 @@ export default defineGkdApp({
     {
       key: 2,
       name: '局部广告-悬浮广告',
-      activityIds: 'com.jingdong.app.mall.MainFrameActivity',
+      activityIds: '.MainFrameActivity',
       rules: [
         {
           key: 0,
@@ -116,7 +116,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          activityIds: 'com.jingdong.app.mall.MainFrameActivity',
+          activityIds: '.MainFrameActivity',
           matches: '@FrameLayout[clickable=true] > [desc="关闭"]',
           excludeMatches:
             '[text="确定" || text="加入购物车" || text*="购买" || text*="下单"][visibleToUser=true]',
@@ -143,7 +143,7 @@ export default defineGkdApp({
           key: 2,
           fastQuery: true,
           activityIds: [
-            'com.jingdong.app.mall.MainFrameActivity',
+            '.MainFrameActivity',
             'com.jd.lib.jshop.jshop.JshopMainShopActivity',
           ],
           excludeMatches: [
@@ -180,7 +180,7 @@ export default defineGkdApp({
     {
       key: 6,
       name: '局部广告-横幅广告',
-      activityIds: 'com.jingdong.app.mall.MainFrameActivity',
+      activityIds: '.MainFrameActivity',
       rules: [
         {
           key: 0,
@@ -216,8 +216,8 @@ export default defineGkdApp({
       key: 10,
       name: '功能类-京东账号登录授权',
       desc: '自动点击"确认登录"',
-      activityIds: 'com.jingdong.app.mall.WebActivity',
-      rules: '[text="京东登录"] > [desc="确认登录"]',
+      activityIds: '.WebActivity',
+      rules: '@[desc="确认登录"][clickable=true] > [text="确认登录"]',
       snapshotUrls: 'https://i.gkd.li/i/12901734',
     },
     {
@@ -233,9 +233,9 @@ export default defineGkdApp({
       key: 12,
       name: '全屏广告-购物车页面支付成功弹窗广告',
       desc: '自动点击正下方的"x"',
-      fastQuery: true,
       rules: [
         {
+          fastQuery: true,
           activityIds: 'com.jd.lib.cart.ShoppingCartNewActivity',
           matches: '@ImageView - ViewGroup >2 TextView[text="查看订单"]',
           snapshotUrls: 'https://i.gkd.li/i/13446362',
@@ -250,22 +250,29 @@ export default defineGkdApp({
         {
           fastQuery: true,
           activityIds: 'com.jd.lib.productdetail.ProductDetailActivity',
-          matches: '[text="继续逛"]',
+          matches: '[text="继续逛"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/15047243',
         },
       ],
     },
     {
       key: 14,
-      name: '功能类-支付订单后点击[完成]',
+      name: '功能类-支付订单后点击[完成/回首页]',
       rules: [
         {
           fastQuery: true,
           activityIds:
             '.bundle.cashierfinish.view.CashierUserContentCompleteActivity',
-          matches: '[vid="lib_cashier_finish_back_page_text"]',
-          exampleUrls: 'https://e.gkd.li/ab886df0-2b34-4804-be7d-742a06fadda9',
-          snapshotUrls: 'https://i.gkd.li/i/17358003',
+          matches:
+            '[vid="lib_cashier_finish_back_page_text" || text="回首页"][clickable=true][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/17358003',
+            'https://i.gkd.li/i/29404312',
+          ],
+          exampleUrls: [
+            'https://e.gkd.li/ab886df0-2b34-4804-be7d-742a06fadda9', // 2024-10_完成
+            'https://e.gkd.li/6c5466d4-3238-43b7-8cf5-312f8c8606ef', // 2026-06_回首页
+          ],
         },
       ],
     },
@@ -296,10 +303,31 @@ export default defineGkdApp({
           actionMaximum: 1,
           resetMatch: 'match',
           fastQuery: true,
-          // activityIds: [],
-          matches: '[text="全部订单信息"][clickable=true][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/e1a3b6f7-b6cb-4379-90b5-cb4b927dacc4',
-          snapshotUrls: 'https://i.gkd.li/i/24372039',
+          activityIds: ['com.jd.lib.ordercenter.taro.OrderDetailActivityTaro'],
+          matches:
+            '[text="全部订单信息" || desc="全部订单信息"][clickable=true][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/24372039', // [activityIds: null?][text="全部订单信息"]
+            'https://i.gkd.li/i/29404102', // [desc="全部订单信息"]
+          ],
+          exampleUrls: [
+            'https://e.gkd.li/e1a3b6f7-b6cb-4379-90b5-cb4b927dacc4',
+            'https://e.gkd.li/f1b6b284-ce65-48e6-83b8-1c6052fbbfa3',
+          ],
+        },
+      ],
+    },
+    {
+      key: 17,
+      name: '功能类-确认收货成功-返回',
+      desc: '点击左上角 返回',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.jd.lib.ordercenter.confirmreceive.ConfirmReceiveActivity',
+          matches: '@[desc="返回"][clickable=true] + * > [text="确认收货成功"]',
+          snapshotUrls: 'https://i.gkd.li/i/25181413',
         },
       ],
     },

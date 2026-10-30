@@ -19,5 +19,17 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '其他-关闭[添加小组件提示]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.biz.home.MainV5Activity',
+          matches: '[vid="iv_close_tip"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26159018',
+        },
+      ],
+    },
   ],
 });

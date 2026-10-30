@@ -17,8 +17,8 @@ export default defineGkdApp({
         {
           key: 0,
           matches:
-            '@ImageView[clickable=true] <2 [id="cn.samsclub.app:id/advertising_container"]',
-          snapshotUrls: 'https://i.gkd.li/i/13609106',
+            '@ImageView[clickable=true] <2 [vid="advertising_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/13609106', //无vid旧快照
         },
         {
           key: 1,
@@ -36,24 +36,25 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
-          activityIds: 'cn.samsclub.app.ui.MainActivity',
-          matches: '[id="cn.samsclub.app:id/tips_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/13609113',
+          activityIds: '.ui.MainActivity',
+          matches: '[vid="tips_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/13609113', //无vid旧快照
         },
       ],
     },
     {
       key: 2,
-      name: '局部广告-关闭「您有一张亲友卡待赠送」通知条',
+      name: '局部广告-底部横幅广告',
+      desc: 'x掉[亲友卡待赠送]',
       fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
         {
-          activityIds: 'cn.samsclub.app.ui.MainActivity',
-          matches: '[id="cn.samsclub.app:id/fragment_home_window_delete_iv"]',
-          snapshotUrls: 'https://i.gkd.li/i/13609113',
+          activityIds: '.ui.MainActivity',
+          matches: '[vid="fragment_home_window_delete_iv"]',
+          snapshotUrls: 'https://i.gkd.li/i/13609113', //无vid旧快照
         },
       ],
     },

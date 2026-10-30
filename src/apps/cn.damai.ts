@@ -11,15 +11,15 @@ export default defineGkdApp({
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
-      priorityTime: 10000,
+      forcedTime: 8000, // 主动查询8s
       rules: [
         {
           fastQuery: true,
           action: 'clickCenter',
           matches: '[vid="homepage_advert_pb"]',
+          snapshotUrls: 'https://i.gkd.li/i/14585402',
           exampleUrls:
             'https://m.gkd.li/57941037/6680a0b8-0796-4165-88fc-1f16cd6c67dd',
-          snapshotUrls: 'https://i.gkd.li/i/14585402',
         },
       ],
     },
@@ -33,9 +33,9 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          activityIds: 'cn.damai.homepage.MainActivity',
-          matches: '[id="cn.damai:id/homepage_popup_window_close_btn"]',
-          snapshotUrls: 'https://i.gkd.li/i/13627900',
+          activityIds: '.homepage.MainActivity',
+          matches: '[vid="homepage_popup_window_close_btn"]',
+          snapshotUrls: 'https://i.gkd.li/i/13627900', //旧快照 (无vid)
         },
       ],
     },

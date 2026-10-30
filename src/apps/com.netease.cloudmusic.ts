@@ -18,16 +18,18 @@ export default defineGkdApp({
           excludeActivityIds: [
             '.music.biz.setting.activity.SettingActivity',
             '.music.biz.search.activity.SearchActivity',
+            '.music.biz.rn.activity.BgMainProcessRNActivity',
           ],
           matches:
             '[text*="跳过" || text*="Skip"][text.length<10][width<500 && height<200][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/15092772',
-            'https://i.gkd.li/i/17892200', // 'Skip' for English users.
+            'https://i.gkd.li/i/30857148',
+            'https://i.gkd.li/i/30857149', // 'Skip' for English users.
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/15092814',
             'https://i.gkd.li/i/16318423',
+            'https://i.gkd.li/i/30857162',
           ],
         },
       ],
@@ -136,21 +138,22 @@ export default defineGkdApp({
           excludeMatches:
             '[text="当前场景" || vid="mainDrawerContainer"][visibleToUser=true]',
           matches:
-            '[vid="dsl_dialog_root" || text^="邀您开通VIP" || text^="本周已免费试听" || text^="免费听模式体验中" || text^="续费后，即可畅听" || text*="小组件到桌面"][visibleToUser=true]',
+            '[vid="dsl_dialog_root" || text^="邀您开通VIP" || text^="本周已免费试听" || text^="免费听模式体验中" || text^="续费后，即可畅听" || text*="小组件到桌面" || text$="开通VIP畅听"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/13804534',
+            'https://i.gkd.li/i/13804534', // [vid="dsl_dialog_root"]
             'https://i.gkd.li/i/13848913',
             'https://i.gkd.li/i/13962214',
             'https://i.gkd.li/i/14036940',
             'https://i.gkd.li/i/15047126',
             'https://i.gkd.li/i/15125892',
             'https://i.gkd.li/i/15244091',
-            'https://i.gkd.li/i/20097535',
-            'https://i.gkd.li/i/20097609',
-            'https://i.gkd.li/i/20115012',
-            'https://i.gkd.li/i/22451511',
             'https://i.gkd.li/i/23770986',
-            'https://i.gkd.li/i/23770978',
+            'https://i.gkd.li/i/20097535', // 免费听模式体验中
+            'https://i.gkd.li/i/20097609', // 本周已免费试听
+            'https://i.gkd.li/i/20115012', // 邀您开通VIP，畅享千万级会员曲库
+            'https://i.gkd.li/i/22451511', // 续费后，即可畅听TA们的歌
+            'https://i.gkd.li/i/23770978', // 添加「乐评日历」小组件到桌面
+            'https://i.gkd.li/i/27080453', // 含334首VIP歌曲，开通VIP畅听
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/15404777',
@@ -197,8 +200,7 @@ export default defineGkdApp({
         {
           key: 1,
           fastQuery: true,
-          activityIds:
-            'com.netease.cloudmusic.music.biz.rn.activity.CashierRNActivity',
+          activityIds: '.music.biz.rn.activity.CashierRNActivity',
           matches:
             '[text="忍痛离开"] < @ViewGroup[clickable=true] -n * > [text$="VIP可畅享千万曲库"]',
           snapshotUrls: 'https://i.gkd.li/i/24548104',
@@ -265,6 +267,23 @@ export default defineGkdApp({
           matches: '[text="直接关闭"]',
           exampleUrls: 'https://e.gkd.li/1e2b2822-01dd-455f-8991-1b746c61c07c',
           snapshotUrls: 'https://i.gkd.li/i/16357210',
+        },
+      ],
+    },
+    {
+      key: 17,
+      name: '其他-分享时[取消勾选]得现金',
+      desc: '仅点击1次',
+      rules: [
+        {
+          fastQuery: true,
+          actionMaximum: 1,
+          resetMatch: 'match',
+          activityIds:
+            '.music.biz.rn.activity.MainProcessLayerReactNativeActivity',
+          matches: '@[clickable=true] > ImageView + [text*="勾选后分享到"]',
+          snapshotUrls: 'https://i.gkd.li/i/33880660',
+          exampleUrls: 'https://e.gkd.li/61178688-ca5c-4d21-96a2-8d8382665433',
         },
       ],
     },

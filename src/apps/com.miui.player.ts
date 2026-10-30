@@ -30,16 +30,14 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds:
             'com.tencent.qqmusiclite.activity.player.MusicPlayerActivity',
-          matches:
-            '[id="com.miui.player:id/free_mode_tips_layout"] + [id="com.miui.player:id/iv_close"]',
+          matches: '[vid="free_mode_tips_layout"] + [vid="iv_close"]',
           snapshotUrls: 'https://i.gkd.li/i/13303283',
         },
         {
           key: 1,
           fastQuery: true,
           activityIds: 'com.tencent.qqmusiclite.activity.MainActivity',
-          matches:
-            '[id="com.miui.player:id/cl_floating_promote"] > [id="com.miui.player:id/iv_close"]',
+          matches: '[vid="cl_floating_promote"] > [vid="iv_close"]',
           snapshotUrls: 'https://i.gkd.li/i/13562649',
         },
       ],
@@ -54,7 +52,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          matches: '[id="com.miui.player:id/ad_skip_text"][text="关闭"]',
+          matches: '[vid="ad_skip_text"][text="关闭"]',
           exampleUrls:
             'https://m.gkd.li/57941037/d923ba1b-3098-49b0-8593-c84dbaa16612',
           snapshotUrls: [
@@ -107,7 +105,7 @@ export default defineGkdApp({
         {
           fastQuery: true,
           activityIds: 'com.tencent.qqmusiclite.activity.MainActivity',
-          matches: '[id="com.miui.player:id/iv_close_dialog_button"]',
+          matches: '[vid="iv_close_dialog_button"]',
           snapshotUrls: 'https://i.gkd.li/i/13623503',
         },
       ],
@@ -121,7 +119,7 @@ export default defineGkdApp({
           actionDelay: 15000,
           fastQuery: true,
           activityIds: 'com.tencentmusic.ad.tmead.reward.TMERewardActivity',
-          matches: '[id="com.miui.player:id/tme_ad_skip_button"]',
+          matches: '[vid="tme_ad_skip_button"]',
           snapshotUrls: 'https://i.gkd.li/i/13610667',
         },
       ],
@@ -168,6 +166,22 @@ export default defineGkdApp({
           matches: '[vid="ad_close"][text="不感兴趣"]',
           exampleUrls: 'https://e.gkd.li/6ca7beba-98b8-4892-b275-1a116d040115',
           snapshotUrls: 'https://i.gkd.li/i/20420322',
+        },
+      ],
+    },
+    {
+      key: 15,
+      name: '全屏广告-体验臻品音质',
+      desc: '连接设备30min臻品音质-> x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.tencent.qqmusiclite.activity.player.MusicPlayerActivity',
+          matches:
+            '[text$="钟免费体验"] < * - [text$="臻品音质"] <2 * - @View[clickable=true][text=null][childCount=0] <<4 [id="android:id/content"]',
+          exampleUrls: 'https://e.gkd.li/3bffcfdf-4d08-4461-8c43-24521d85e697',
+          snapshotUrls: 'https://i.gkd.li/i/29175549',
         },
       ],
     },
